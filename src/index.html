@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlyFlirt · Automated Drosophila Mating Behavior Analysis</title>
+    <link rel="icon" type="image/png" href="/flyflirt-hero.png" />
+    <meta name="description" content="FlyFlirt is a research-ready toolkit to detect ROIs, track flies, and quantify mating behavior from video.">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Highlight.js (for code blocks) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<!-- ================= NAVBAR ================= -->
+<header class="nav">
+    <div class="nav-inner container">
+        <a href="#top" class="logo">
+            <span class="logo-icon">FF</span>
+            <span class="logo-text">FlyFlirt</span>
+        </a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+        </button>
+
+        <nav class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#features">Features</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#install">Install</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://github.com/Srujyama/FlyFlirt" target="_blank" class="nav-cta">GitHub</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<main id="top">
+    <section class="hero container">
+        <div class="hero-content" data-sr>
+            <div class="pill">PyQt · OpenCV · SciPy · Pandas</div>
+            <h1>Quantify Drosophila mating behavior from video, automatically.</h1>
+            <p>
+                FlyFlirt detects arenas, tracks flies, and extracts mating events and latencies
+                from your video recordings — so your lab can focus on science, not manual scoring.
+            </p>
+
+            <div class="hero-actions">
+                <a href="https://github.com/Srujyama/FlyFlirt" target="_blank" class="btn primary">
+                    View on GitHub
+                </a>
+                <a href="#install" class="btn ghost">
+                    Get started
+                </a>
+            </div>
+
+            <div class="hero-meta">
+                <div>
+                    <span class="meta-label">Language</span>
+                    <span class="meta-value">Python · PyQt6</span>
+                </div>
+                <div>
+                    <span class="meta-label">Use case</span>
+                    <span class="meta-value">Drosophila behavior analysis</span>
+                </div>
+                <div>
+                    <span class="meta-label">License</span>
+                    <span class="meta-value">MIT</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual" data-sr>
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <span class="hero-dot red"></span>
+                    <span class="hero-dot yellow"></span>
+                    <span class="hero-dot green"></span>
+                    <span class="hero-title">Live ROI overlay</span>
+                </div>
+
+                <div class="hero-video-placeholder">
+                    <div class="arena-grid">
+                        <div class="arena">
+                            <span class="arena-label">ROI 0</span>
+                            <span class="arena-pill active">mating</span>
+                        </div>
+                        <div class="arena">
+                            <span class="arena-label">ROI 1</span>
+                            <span class="arena-pill">void</span>
+                        </div>
+                        <div class="arena">
+                            <span class="arena-label">ROI 2</span>
+                            <span class="arena-pill active">tracking</span>
+                        </div>
+                        <div class="arena">
+                            <span class="arena-label">ROI 3</span>
+                            <span class="arena-pill">idle</span>
+                        </div>
+                    </div>
+                    <p class="hero-caption">
+                        Visualize automatically detected ROIs, fly positions, and mating status per arena.
+                    </p>
+                </div>
+
+                <div class="hero-card-footer">
+                    <div>
+                        <span class="meta-label">Batch queue</span>
+                        <span class="meta-value">Multi-video</span>
+                    </div>
+                    <div>
+                        <span class="meta-label">Export</span>
+                        <span class="meta-value">CSV · per ROI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= OVERVIEW ================= -->
+    <section id="overview" class="section container">
+        <div class="section-header" data-sr>
+            <h2>What is FlyFlirt?</h2>
+            <p>
+                FlyFlirt is a GUI-driven Python toolkit built on PyQt6 and OpenCV
+                to help labs quantify Drosophila mating behavior from raw video recordings.
+            </p>
+        </div>
+
+        <div class="overview-grid">
+            <div class="card" data-sr>
+                <h3>Detect arenas & ROIs</h3>
+                <p>
+                    Automatically detect ROIs using contour-based segmentation and Otsu
+                    thresholding, then index each arena for downstream analysis.
+                </p>
+            </div>
+            <div class="card" data-sr>
+                <h3>Track flies & events</h3>
+                <p>
+                    Use blob detection and heuristics to track flies per ROI and
+                    identify mating events based on fly counts and positions over time.
+                </p>
+            </div>
+            <div class="card" data-sr>
+                <h3>Export ready-to-analyze data</h3>
+                <p>
+                    Generate CSV files with per-ROI start times, mating durations,
+                    and voided arenas — ready for stats in R, Python, or your pipeline.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section id="features" class="section section-alt">
+        <div class="container">
+            <div class="section-header" data-sr>
+                <h2>Designed around real lab workflows</h2>
+                <p>Everything you need to go from raw video to curated behavioral tables.</p>
+            </div>
+
+            <div class="features-grid">
+                <article class="feature-card" data-sr>
+                    <h3>Queue multiple videos</h3>
+                    <p>
+                        Batch-process entire experiment days. Queue as many videos as you like,
+                        monitor their progress, and auto-export a CSV per video.
+                    </p>
+                    <ul>
+                        <li>Multi-file selection</li>
+                        <li>Per-video FPS detection</li>
+                        <li>Automatic processing loop</li>
+                    </ul>
+                </article>
+
+                <article class="feature-card" data-sr>
+                    <h3>Smart ROI voiding</h3>
+                    <p>
+                        Automatically detect ROIs with too many or too few flies, and void them.
+                        Manually override with ranges like <code>3-7, 12, 15</code>.
+                    </p>
+                    <ul>
+                        <li>Per-ROI fly counts</li>
+                        <li>Heuristic void rules</li>
+                        <li>Manual bulk void control</li>
+                    </ul>
+                </article>
+
+                <article class="feature-card" data-sr>
+                    <h3>Mating latency & duration</h3>
+                    <p>
+                        Detect mating onset and maintain a “grace period” to handle short
+                        interruptions. Export adjusted start times and longest durations.
+                    </p>
+                    <ul>
+                        <li>Latency (start time – 360s offset)</li>
+                        <li>Longest mating duration per ROI</li>
+                        <li>Boolean mating status</li>
+                    </ul>
+                </article>
+
+                <article class="feature-card" data-sr>
+                    <h3>Visual feedback in real time</h3>
+                    <p>
+                        Watch overlayed ROIs, fly positions, and color-coded states (idle,
+                        mating, completed) while the analysis runs in background threads.
+                    </p>
+                    <ul>
+                        <li>PyQt6 GUI with live frame preview</li>
+                        <li>Per-frame time & frame index</li>
+                        <li>Smooth scaling for large monitors</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WORKFLOW ================= -->
+    <section id="workflow" class="section container">
+        <div class="section-header" data-sr>
+            <h2>From video to CSV in four steps</h2>
+            <p>FlyFlirt is built to slot into your existing acquisition and analysis pipeline.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item" data-sr>
+                <div class="timeline-badge">1</div>
+                <div class="timeline-content">
+                    <h3>Record your experiment</h3>
+                    <p>
+                        Record arenas at stable lighting and frame rate. Save videos as
+                        <code>.mp4</code> or <code>.avi</code>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-sr>
+                <div class="timeline-badge">2</div>
+                <div class="timeline-content">
+                    <h3>Queue videos in FlyFlirt</h3>
+                    <p>
+                        Launch the GUI, select your video files, and configure frame skip
+                        and initial time offsets for performance.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-sr>
+                <div class="timeline-badge">3</div>
+                <div class="timeline-content">
+                    <h3>Review ROIs & void arenas</h3>
+                    <p>
+                        Inspect automatically detected ROIs, void noisy or problematic
+                        arenas, and let the analysis complete.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-sr>
+                <div class="timeline-badge">4</div>
+                <div class="timeline-content">
+                    <h3>Analyze exported CSVs</h3>
+                    <p>
+                        Use the generated per-ROI CSVs in your statistical environment
+                        to compute group metrics, visualize distributions, and publish.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= INSTALL / CODE ================= -->
+    <section id="install" class="section section-alt">
+        <div class="container install-grid">
+            <div class="install-text" data-sr>
+                <div class="section-header">
+                    <h2>Install & run FlyFlirt</h2>
+                    <p>Set up a clean environment and launch the GUI in minutes.</p>
+                </div>
+
+                <ol class="install-steps">
+                    <li>Create a fresh Python 3.9+ environment (conda or venv).</li>
+                    <li>
+                        Clone the repository:
+                        <code>git clone https://github.com/Srujyama/FlyFlirt.git</code>
+                    </li>
+                    <li>Install dependencies via <code>pip</code>.</li>
+                    <li>Launch the PyQt GUI and start processing.</li>
+                </ol>
+
+                <button class="btn primary" id="copy-command-btn" data-copy="git clone https://github.com/Srujyama/FlyFlirt.git">
+                    Copy git clone command
+                </button>
+
+                <p class="small-note">
+                    For detailed environment instructions, see the README on GitHub.
+                </p>
+            </div>
+
+            <div class="install-code" data-sr>
+          <pre><code class="language-bash">
+# 1. Create and activate environment
+conda create -n flyflirt python=3.11
+conda activate flyflirt
+
+# 2. Clone the repo
+git clone https://github.com/Srujyama/FlyFlirt.git
+cd FlyFlirt
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Launch the GUI
+python -m flyflirt
+          </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq" class="section container">
+        <div class="section-header" data-sr>
+            <h2>Frequently asked questions</h2>
+            <p>Some quick answers about what FlyFlirt does and how to use it.</p>
+        </div>
+
+        <div class="faq-grid">
+            <details class="faq-item" open data-sr>
+                <summary>What kind of experiments is FlyFlirt designed for?</summary>
+                <p>
+                    FlyFlirt is optimized for Drosophila mating behavior assays with multiple arenas
+                    in a single field of view. It assumes two flies per arena and stable lighting.
+                </p>
+            </details>
+
+            <details class="faq-item" data-sr>
+                <summary>Can I use it for species other than Drosophila?</summary>
+                <p>
+                    Possibly, but it is not tuned for that. You may need to adjust parameters
+                    and heuristics in the source code to match body size and movement patterns.
+                </p>
+            </details>
+
+            <details class="faq-item" data-sr>
+                <summary>What does “void ROI” mean?</summary>
+                <p>
+                    An ROI is marked as “void” when the arena is not suitable for analysis —
+                    for example, too many flies, too few flies, or tracking failures over time.
+                    Voided ROIs are exported as <code>N/A</code> in the final CSV.
+                </p>
+            </details>
+
+            <details class="faq-item" data-sr>
+                <summary>What outputs do I get?</summary>
+                <p>
+                    For each video, FlyFlirt exports a CSV containing ROI IDs, adjusted mating
+                    start times (latencies), longest mating duration, and a Boolean mating status.
+                </p>
+            </details>
+
+            <details class="faq-item" data-sr>
+                <summary>How do I cite FlyFlirt in a publication?</summary>
+                <p>
+                    The repository includes a <code>CITATION.cff</code> file with recommended
+                    citation information. You can also use GitHub’s “Cite this repository” feature.
+                </p>
+            </details>
+        </div>
+    </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <span class="logo-icon footer-logo-icon">FF</span>
+            <span class="footer-text">FlyFlirt · MIT licensed research toolkit</span>
+        </div>
+        <div class="footer-links">
+            <a href="https://github.com/Srujyama/FlyFlirt" target="_blank">GitHub</a>
+            <a href="#top">Back to top</a>
+        </div>
+    </div>
+</footer>
+
+<!-- ScrollReveal -->
+<script src="https://unpkg.com/scrollreveal"></script>
+<!-- Highlight.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<!-- Custom Script -->
+<script src="script.js"></script>
+</body>
+</html>
