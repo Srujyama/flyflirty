@@ -162,6 +162,13 @@ ul, ol { list-style: none }
   max-width: 50ch; line-height: 1.65;
   margin-bottom: 16px;
 }
+.doc-dl {
+  display: inline-block; font-family: var(--mono); font-size: 12px;
+  padding: 5px 12px; border: 1px solid var(--border);
+  border-radius: 4px; color: var(--t2);
+  transition: all .2s; text-decoration: none; margin-bottom: 8px;
+}
+.doc-dl:hover { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); text-decoration: none }
 
 .doc-sec h2 {
   font-size: 18px; font-weight: 700; letter-spacing: -.02em;
